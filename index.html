@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lgce</title>
+  <style>
+    html {
+      overflow: auto;
+    }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    .dropShade {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(rgba(0,160,255,0.85), rgba(255,255,255,0));
+      color: white;
+      text-shadow: 0px 1px 5px black, 0px 1px 5px black, 0px 2px 3px black;
+      font-size: 3vmin;
+      box-shadow: inset 0 0 5vmax rgba(0,160,255,1);
+      z-index: 100;
+      pointer-events: none;
+    }
+    .dropShade::before { content: 'You can drop the file here'; }
+    .dropShade.faded::before { opacity: 0.25; }
+    .dragOver .dropShade { display: flex; }
+
+    .container, .setupPanel {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container > canvas {
+      width: 25%;
+    }
+  </style>
+</head>
+<body>
+  <div class="setupPanel">
+  <label><span>Audio bitrate: </span><input class="audioBitrate" type="range" min="32" max="128" step="32" value="128"/><output></output></label>
+  <label><span>Video bitrate: </span><input class="videoBitrate" type="range" min="32" max="4096" step="32" value="2048"/><output></output></label>
+  <label><input class="convertImmedately" type="checkbox" checked="checked"/> Start conversion immedately if the browser allows it (otherwise you must press play to start the conversion)</label>
+  </div>
+  <div class="container"></div>
+  <div class="dropShade"></div>
+  <script defer="defer" src="drop.js"></script>
+  <script defer="defer" src="audioPic.js"></script>
+</body>
+</html>
