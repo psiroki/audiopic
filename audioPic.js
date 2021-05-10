@@ -91,7 +91,7 @@ function checkLoaded() {
   });
   audio.addEventListener("play", _ => {
     console.log("Start recording");
-    recorder.start();
+    recorder.start(5000);
   });
   if (convertImmedately.checked)
     audio.play();
